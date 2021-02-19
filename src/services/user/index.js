@@ -12,7 +12,7 @@ usersRouter.post("/register", async (req, res, next) => {
     } catch (error) {
       next(error)
     }
-  })
+})
 
 usersRouter.post("/login", async (req, res, next) => {
   try {
