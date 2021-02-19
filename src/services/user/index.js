@@ -13,8 +13,8 @@ const { authenticate, refreshToken } = require("../auth");
 usersRouter.post("/login", async (req, res, next) => {
   try {
     const { username, password } = req.body;
+    console.log(req.body);
     const user = await UserModel.findByCredentials(username, password);
-    // const token = await authenticate(user);
 
     const { accessToken, refreshToken } = await authenticate(user);
     res.cookie("accessToken", accessToken, accessTokenOptions);
@@ -141,7 +141,6 @@ usersRouter.get(
 usersRouter
   .route("/me")
   .get(authorize, async (req, res, next) => {
-    console.log("header>", req.headers, "cookies>", req.cookies);
     try {
       res.send(req.user);
     } catch (error) {
