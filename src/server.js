@@ -39,7 +39,7 @@ const loggerMiddleware = (req, res, next) => {
 
 // server.use(helmet());
 // server.use(cors({ credentials: true, origin: process.env.FE_URL_PROD }));
-// server.use(express.json());
+ server.use(express.json());
 // server.use(cookieParser());
 // server.use(passport.initialize());
 
