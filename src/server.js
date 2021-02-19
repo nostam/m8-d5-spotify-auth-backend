@@ -37,11 +37,11 @@ const loggerMiddleware = (req, res, next) => {
 //   credentials: true,
 // };
 
-// server.use(helmet());
-// server.use(cors({ credentials: true, origin: process.env.FE_URL_PROD }));
-// server.use(express.json());
-// server.use(cookieParser());
-// server.use(passport.initialize());
+server.use(helmet());
+server.use(cors({ credentials: true, origin: process.env.FE_URL_PROD }));
+server.use(express.json());
+server.use(cookieParser());
+server.use(passport.initialize());
 
 server.use(loggerMiddleware);
 
@@ -51,7 +51,7 @@ server.use(notFoundHandler);
 server.use(forbiddenHandler);
 server.use(genericErrorHandler);
 
-console.log( listEndpoints(server))
+console.log(listEndpoints(server));
 
 mongoose
   .connect(
