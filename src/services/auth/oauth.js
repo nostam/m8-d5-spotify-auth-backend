@@ -53,8 +53,7 @@ passport.use(
         //skipped firstname and lastname because spotify only have display name which usually is username
         spotifyId: profile.id,
         username: profile.id,
-        image:
-          profile.images.indexOf(image) !== -1 ? profile.images[0].url : "",
+        image: profile.images.length !== 0 ? profile.images[0].url : "",
         role: "user",
       };
       try {
