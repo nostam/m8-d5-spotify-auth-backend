@@ -1,21 +1,21 @@
 const express = require("express");
 const cors = require("cors");
-const usersRoute = require("./services/users");
+const usersRoute = require("./services/user");
 const server = express();
 const port = process.env.PORT || 3001;
 const helmet = require("helmet");
-// const listEndpoints = require("express-list-endpoints");
+const listEndpoints = require("express-list-endpoints");
 const mongoose = require("mongoose");
 const {
   badRequestHandler,
   notFoundHandler,
   forbiddenHandler,
-  catchAllHandler,
+  genericErrorHandler,
 } = require("./middlewares/errorHandling");
 
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
-const oauth = require("./services/auth/oauth");
+//const oauth = require("./services/auth/oauth");
 
 const loggerMiddleware = (req, res, next) => {
   console.log(`Logged ${req.url} ${req.method} -- ${new Date()}`);
@@ -37,11 +37,11 @@ const loggerMiddleware = (req, res, next) => {
 //   credentials: true,
 // };
 
-server.use(helmet());
-server.use(cors({ credentials: true, origin: process.env.FE_URL_PROD }));
-server.use(express.json());
-server.use(cookieParser());
-server.use(passport.initialize());
+// server.use(helmet());
+// server.use(cors({ credentials: true, origin: process.env.FE_URL_PROD }));
+// server.use(express.json());
+// server.use(cookieParser());
+// server.use(passport.initialize());
 
 server.use(loggerMiddleware);
 
@@ -49,9 +49,9 @@ server.use("/users", usersRoute);
 server.use(badRequestHandler);
 server.use(notFoundHandler);
 server.use(forbiddenHandler);
-server.use(catchAllHandler);
+server.use(genericErrorHandler);
 
-// console.log(listEndpoints(server))
+console.log( listEndpoints(server))
 
 mongoose
   .connect(
