@@ -46,15 +46,15 @@ passport.use(
     {
       clientID: process.env.SPOTIFY_ID,
       clientSecret: process.env.SPOTIFY_SECRET,
-      callbackURL: "${process.env.API_URL}/users/sportifyRedirect",
+      callbackURL: `${process.env.API_URL}/users/spotifyRedirect`,
     },
-    async function (accessToken, refreshToken, expires_in, profile, done) {
+    async function (accessToken, refreshToken, expires_in, profile, next) {
       const newUser = {
+        //skipped firstname and lastname because spotify only have display name which usually is username
         spotifyId: profile.id,
         username: profile.id,
-        name: profile.display_name.split(" ")[0],
-        surname: profile.display_name.split(" ")[1],
-        image: profile.images[0].url,
+        image:
+          profile.images.indexOf(image) !== -1 ? profile.images[0].url : "",
         role: "user",
       };
       try {
