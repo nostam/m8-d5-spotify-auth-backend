@@ -15,7 +15,7 @@ const {
 
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
-//const oauth = require("./services/auth/oauth");
+const oauth = require("./services/auth/oauth");
 
 const loggerMiddleware = (req, res, next) => {
   console.log(`Logged ${req.url} ${req.method} -- ${new Date()}`);
