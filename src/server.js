@@ -51,7 +51,7 @@ server.use(notFoundHandler);
 server.use(forbiddenHandler);
 server.use(genericErrorHandler);
 
-console.log(listEndpoints(server));
+// console.log(listEndpoints(server));
 
 mongoose
   .connect(
