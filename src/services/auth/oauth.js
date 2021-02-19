@@ -16,8 +16,8 @@ passport.use(
     async (request, accessToken, refreshToken, profile, next) => {
       const newUser = {
         googleId: profile.id,
-        firstName: profile.name.givenName,
-        lastName: profile.name.familyName,
+        name: profile.name.givenName,
+        surname: profile.name.familyName,
         username: profile.emails[0].value,
         role: "user",
         refreshTokens: [],
@@ -52,8 +52,8 @@ passport.use(
       const newUser = {
         spotifyId: profile.id,
         username: profile.id,
-        firstName: profile.display_name.split(" ")[0],
-        lastName: profile.display_name.split(" ")[1],
+        name: profile.display_name.split(" ")[0],
+        surname: profile.display_name.split(" ")[1],
         image: profile.images[0].url,
         role: "user",
       };
