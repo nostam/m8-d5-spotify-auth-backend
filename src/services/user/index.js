@@ -7,7 +7,7 @@ const {
   accessTokenOptions,
   refreshTokenOptions,
 } = require("../../utils");
-const { authorize } = require("../auth/middlewares");
+const { authorize } = require("../auth/middleware");
 const { authenticate, refreshToken } = require("../auth");
 
 usersRouter.post("/login", async (req, res, next) => {
